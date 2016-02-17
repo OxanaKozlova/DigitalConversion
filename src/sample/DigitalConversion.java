@@ -6,49 +6,53 @@ import java.util.ArrayList;
  * Created by oxana on 6.2.16.
  */
 public class DigitalConversion {
-    public double getFunction(int argument){
-        return (Math.cos(4*Math.PI*argument/16)+Math.sin(2*Math.PI*argument/16));
+    public double getFunction(int n){
+        return (Math.cos(4*Math.PI*n/16)+Math.sin(2*Math.PI*n/16));
     }
 
-    private double getReal(int argument, int index){
-        return (getFunction(argument)*Math.cos(2*Math.PI*argument*index/16));
-    }
 
-    private double getImaginary(int argument, int index){
-        return (getFunction(argument)*Math.sin(2*Math.PI*argument*index/16));
-
-    }
-
-    private Complex createCoeff(int index, int sign, int division){
-        Complex sum = new Complex(0,0);
-        for(int i = 0; i<16; i++){
-            sum = sum.plus(new Complex(getReal(i, index), (getImaginary(i, index))*sign));
-        }
-        Complex coeff = sum.divides(new Complex(division,0));
-        return coeff;
-    }
-
-    private ArrayList<Complex> getArrayCoeff(int sign, int division){
+    private ArrayList<Complex> getArrayValue(int sign, int division, boolean isReverse){
         ArrayList<Complex> arrayCoeff = new ArrayList<>();
         for(int i = 0; i<16; i++){
-            arrayCoeff.add(createCoeff(i, sign, division));
+            arrayCoeff.add(getSummand(i, sign, division, isReverse));
         }
         return arrayCoeff;
     }
 
+    private Complex getSummand(int index, int sign, int division, boolean isReverse){
+        Complex sum = new Complex(0,0);
+        ArrayList<Complex> directConversion = new ArrayList<Complex>() ;
+        if(isReverse){
+             directConversion = directConversion();
+            for(int i = 0; i<16; i++){
+                sum = sum.plus(directConversion.get(i).times(new Complex(Math.cos(2*Math.PI*i*index/16),sign*Math.sin(2*Math.PI*i*index/16))));
+            }
+        }
+        else{
+            for(int i = 0; i<16; i++){
+                sum = sum.plus(new Complex(Math.cos(2*Math.PI*i*index/16),sign*Math.sin(2*Math.PI*i*index/16) ).times(getFunction(i)));
+            }
+        }
+        Complex coeff = sum.divides(new Complex(division,0));
+        return coeff;
+
+    }
+
     public ArrayList<Complex> directConversion(){
-        return getArrayCoeff(-1, 16);
+        return getArrayValue(1, 16,false);
     }
-
     public ArrayList<Complex> reverseConversion(){
-        return getArrayCoeff(1, 1);
+        return getArrayValue(-1, 1,true);
     }
 
-    public ArrayList<Double> getAbsolute(ArrayList<Complex> complexArray){
+       public ArrayList<Double> getAbsolute(){
         ArrayList<Double> absoluteArray = new ArrayList<Double>();
+           ArrayList<Complex> complexArray = directConversion();
         for(int i = 0; i<complexArray.size(); i++){
             absoluteArray.add(complexArray.get(i).abs());
         }
         return absoluteArray;
     }
+
+
 }
