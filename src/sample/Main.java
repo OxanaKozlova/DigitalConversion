@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 public class Main extends Application {
 
 
@@ -18,6 +20,18 @@ public class Main extends Application {
 
 
         primaryStage.show();
+        FastConversion m = new FastConversion();
+        m.inversion();
+        HashMap<Integer, Complex> t = m.getFunction();
+
+       // HashMap<Integer, Complex> temp = m.fft(t, -1);
+//
+//        for(int i = 0; i<temp.size(); i++){
+//            System.out.println(temp.get(i));
+//        }
+//
+
+
 
     }
 

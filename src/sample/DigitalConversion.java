@@ -3,12 +3,12 @@ package sample;
 import java.util.ArrayList;
 
 /**
- * Created by oxana on 6.2.16.
+ * Created by Oxana on 22.02.2016.
  */
 public class DigitalConversion {
     public double getFunction(int n){
         return (Math.cos(4*Math.PI*n/16)+Math.sin(2*Math.PI*n/16));
-    }
+}
 
 
     private ArrayList<Complex> getArrayValue(int sign, int division, boolean isReverse){
@@ -23,7 +23,7 @@ public class DigitalConversion {
         Complex sum = new Complex(0,0);
         ArrayList<Complex> directConversion = new ArrayList<Complex>() ;
         if(isReverse){
-             directConversion = directConversion();
+            directConversion = directConversion();
             for(int i = 0; i<16; i++){
                 sum = sum.plus(directConversion.get(i).times(new Complex(Math.cos(2*Math.PI*i*index/16),sign*Math.sin(2*Math.PI*i*index/16))));
             }
@@ -45,14 +45,12 @@ public class DigitalConversion {
         return getArrayValue(-1, 1,true);
     }
 
-       public ArrayList<Double> getAbsolute(){
+    public ArrayList<Double> getAbsolute(){
         ArrayList<Double> absoluteArray = new ArrayList<Double>();
-           ArrayList<Complex> complexArray = directConversion();
+        ArrayList<Complex> complexArray = directConversion();
         for(int i = 0; i<complexArray.size(); i++){
             absoluteArray.add(complexArray.get(i).abs());
         }
         return absoluteArray;
     }
-
-
 }
