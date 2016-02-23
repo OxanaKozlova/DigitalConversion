@@ -62,7 +62,7 @@ public class DirectController {
         reverse.getXAxis().setAutoRanging(true);
         reverse.getYAxis().setAutoRanging(true);
         XYChart.Series seriesReverse = new XYChart.Series<>();
-        seriesReverse.setName("Amplitude Function");
+        seriesReverse.setName("Reverse  Function");
         DigitalConversion reverseConversion = new DigitalConversion();
         ArrayList<Complex> functionReverse = reverseConversion.reverseConversion();
         for(Integer i=0; i<16; i++){
