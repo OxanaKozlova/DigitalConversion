@@ -21,15 +21,6 @@ public class Main extends Application {
 
 
         primaryStage.show();
-        FastConversion m = new FastConversion();
-
-        ArrayList< Complex> t = m.getFunction();
-        ArrayList<Complex> result =  m.fft(t, -1);
-        for(int i = 0; i<result.size(); i++){
-            System.out.println(result.get(i));
-        }
-
-
 
     }
 

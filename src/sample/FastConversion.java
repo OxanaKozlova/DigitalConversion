@@ -12,8 +12,10 @@ import java.util.HashMap;
 public class FastConversion {
     public ArrayList<Complex> getFunction(){
         ArrayList<Complex> array = new ArrayList<>();
+//        System.out.println("function");
         for(int i = 0; i<16; i++){
             array.add(new Complex((Math.cos(4*Math.PI*i/16)+Math.sin(2*Math.PI*i/16)),0));
+//            System.out.print(array.get(i)+"   ");
         }
         return array ;
     }
@@ -24,6 +26,10 @@ public class FastConversion {
             temp.add(variables.get(0));
             return temp;
         }
+//        System.out.println("Variables in fft");
+//        for(int i = 0; i<variables.size(); i++){
+//            System.out.print(variables.get(i)+"    ");
+//        }
         ArrayList< Complex> even = new ArrayList<>();
         ArrayList<Complex> odd = new ArrayList<>();
         for (int i = 0; i < (variables.size() / 2); i++) {
@@ -37,7 +43,6 @@ public class FastConversion {
 
         ArrayList<Complex> result = new ArrayList<Complex>();
         Complex w = new Complex(1, 0);
-        //Complex tempValue = new Complex(0, 0);
         for (int i = 0; i < n / 2; i++) {
             Complex tempValue = new Complex (bodd.get(i).times(w).re(), bodd.get(i).times(w).im());
             result.add(beven.get(i).plus(tempValue));
@@ -45,5 +50,13 @@ public class FastConversion {
             w = w.times(wn);
         }
         return result;
+    }
+
+    public ArrayList<Double> getAbsolute(ArrayList<Complex> fftResult){
+        ArrayList<Double> absolute = new ArrayList<>();
+        for(int i = 0; i<fftResult.size(); i++){
+            absolute.add(fftResult.get(i).abs());
+        }
+        return absolute;
     }
 }
