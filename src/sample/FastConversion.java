@@ -24,19 +24,14 @@ public class FastConversion {
             temp.add(variables.get(0));
             return temp;
         }
-//        System.out.println();
-//        System.out.println("Variables in fft");
-//        for(int i = 0; i<variables.size(); i++){
-//            System.out.print(variables.get(i)+"    ");
-//        }
         ArrayList< Complex> even = new ArrayList<>();
         ArrayList<Complex> odd = new ArrayList<>();
         for (int i = 0; i < (variables.size() / 2); i++) {
             even.add( variables.get(2*i));
             odd.add(variables.get(2 * i + 1));
         }
-        ArrayList<Complex> beven = fft(even, 1);
-        ArrayList<Complex> bodd = fft(odd, 1);
+        ArrayList<Complex> beven = fft(even, dir);
+        ArrayList<Complex> bodd = fft(odd, dir);
         int n = variables.size();
         Complex wn = new Complex(Math.cos(2 * Math.PI / n), dir * Math.sin(2 * Math.PI / n));
 

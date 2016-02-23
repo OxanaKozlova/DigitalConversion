@@ -58,6 +58,20 @@ public class FastController {
         }
         absolute.getData().add(seriesAbsolute);
 
+        reverse.getXAxis().setAutoRanging(true);
+        reverse.getYAxis().setAutoRanging(true);
+        XYChart.Series seriesReverse = new XYChart.Series<>();
+        seriesReverse.setName("Reverse  Function");
+        FastConversion reverseConversion = new FastConversion();
+        ArrayList<Complex> conversion = reverseConversion.fft(reverseConversion.getFunction(), 1);
+        ArrayList<Complex> functionReverse = reverseConversion.fft(conversion, -1);
+        for(Integer i=0; i<16; i++){
+            Double temp = 2*Math.PI/(16)*i;
+            temp = new BigDecimal(temp).setScale(2, RoundingMode.UP).doubleValue();
+            seriesReverse.getData().add(new XYChart.Data<>(temp.toString(), functionReverse.get(i).re()/16));
+        }
+        reverse.getData().add(seriesReverse);
+
 
 
     }
