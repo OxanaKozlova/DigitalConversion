@@ -12,10 +12,8 @@ import java.util.HashMap;
 public class FastConversion {
     public ArrayList<Complex> getFunction(){
         ArrayList<Complex> array = new ArrayList<>();
-//        System.out.println("function");
         for(int i = 0; i<16; i++){
             array.add(new Complex((Math.cos(4*Math.PI*i/16)+Math.sin(2*Math.PI*i/16)),0));
-//            System.out.print(array.get(i)+"   ");
         }
         return array ;
     }
@@ -26,6 +24,7 @@ public class FastConversion {
             temp.add(variables.get(0));
             return temp;
         }
+//        System.out.println();
 //        System.out.println("Variables in fft");
 //        for(int i = 0; i<variables.size(); i++){
 //            System.out.print(variables.get(i)+"    ");
@@ -36,17 +35,21 @@ public class FastConversion {
             even.add( variables.get(2*i));
             odd.add(variables.get(2 * i + 1));
         }
-        ArrayList<Complex> beven = fft(even, -1);
-        ArrayList<Complex> bodd = fft(odd, -1);
+        ArrayList<Complex> beven = fft(even, 1);
+        ArrayList<Complex> bodd = fft(odd, 1);
         int n = variables.size();
         Complex wn = new Complex(Math.cos(2 * Math.PI / n), dir * Math.sin(2 * Math.PI / n));
 
-        ArrayList<Complex> result = new ArrayList<Complex>();
+        ArrayList<Complex> result = new ArrayList<Complex>(n);
+        for(int i = 0; i<n; i++){
+            result.add(new Complex(0,0));
+        }
         Complex w = new Complex(1, 0);
         for (int i = 0; i < n / 2; i++) {
             Complex tempValue = new Complex (bodd.get(i).times(w).re(), bodd.get(i).times(w).im());
-            result.add(beven.get(i).plus(tempValue));
-            result.add( beven.get(i).minus(tempValue));
+            result.set(i,beven.get(i).plus(tempValue));
+            result.set((i+n/2), beven.get(i).minus(tempValue));
+
             w = w.times(wn);
         }
         return result;
