@@ -12,13 +12,12 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="1436.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FastController">
     <children>
-        <GridPane layoutX="63.0" layoutY="30.0" prefHeight="631.0" prefWidth="1239.0">
+        <GridPane layoutX="63.0" layoutY="30.0" prefHeight="351.0" prefWidth="1239.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
@@ -38,24 +37,17 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </LineChart>
-                <LineChart fx:id="absolute" GridPane.rowIndex="1">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </LineChart>
-                <LineChart fx:id="phase" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </LineChart>
             </children>
         </GridPane>
-        <Button fx:id="toDirect" layoutX="108.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="25.0" prefWidth="132.0" text="To Direct Conversion" />
+        <Button fx:id="toDirect" layoutX="100.0" layoutY="649.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="25.0" prefWidth="132.0" text="To Direct Conversion" />
+          <LineChart fx:id="absolute" layoutX="389.0" layoutY="375.0" prefHeight="337.0" prefWidth="609.0">
+              <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                  <NumberAxis side="LEFT" />
+              </yAxis>
+          </LineChart>
+      <Label fx:id="fast" layoutX="100.0" layoutY="580.0" text="Fast conversion: " />
     </children>
 </AnchorPane>

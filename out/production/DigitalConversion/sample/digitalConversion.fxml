@@ -57,5 +57,6 @@
             </children>
         </GridPane>
       <Button fx:id="toFast" layoutX="108.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="25.0" prefWidth="132.0" text="To Fast Conversion" />
+        <Label fx:id="direct" layoutX="260.0" layoutY="662.0" text="Direct Conversion:  " />
     </children>
 </AnchorPane>

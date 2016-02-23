@@ -6,6 +6,9 @@ import java.util.ArrayList;
  * Created by Oxana on 22.02.2016.
  */
 public class DigitalConversion {
+
+    int sumCount = 0;
+    int mulCount = 0;
     public double getFunction(int n){
         return (Math.cos(4*Math.PI*n/16)+Math.sin(2*Math.PI*n/16));
 }
@@ -26,11 +29,15 @@ public class DigitalConversion {
             directConversion = directConversion();
             for(int i = 0; i<16; i++){
                 sum = sum.plus(directConversion.get(i).times(new Complex(Math.cos(2*Math.PI*i*index/16),sign*Math.sin(2*Math.PI*i*index/16))));
+                sumCount++;
+                mulCount++;
             }
         }
         else{
             for(int i = 0; i<16; i++){
                 sum = sum.plus(new Complex(Math.cos(2*Math.PI*i*index/16),sign*Math.sin(2*Math.PI*i*index/16) ).times(getFunction(i)));
+                sumCount++;
+                mulCount++;
             }
         }
         Complex coeff = sum.divides(new Complex(division,0));
@@ -39,6 +46,7 @@ public class DigitalConversion {
     }
 
     public ArrayList<Complex> directConversion(){
+
         return getArrayValue(1, 16,false);
     }
     public ArrayList<Complex> reverseConversion(){
@@ -52,5 +60,13 @@ public class DigitalConversion {
             absoluteArray.add(complexArray.get(i).abs());
         }
         return absoluteArray;
+    }
+
+    public int getMulCount(){
+        return mulCount;
+    }
+
+    public int getSumCount(){
+        return sumCount;
     }
 }

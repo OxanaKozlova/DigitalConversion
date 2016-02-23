@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +32,9 @@ public class DirectController {
 
     @FXML
     public LineChart phase;
+
+    @FXML
+    public Label direct;
 
     public  void initialize(){
         origin.getXAxis().setAutoRanging(true);
@@ -85,6 +89,10 @@ public class DirectController {
             seriesPhase.getData().add(new XYChart.Data<>(temp.toString(), phaseValue.get(i).phase()));
         }
         phase.getData().add(seriesPhase);
+
+
+        int countOperation = function.getMulCount()+function.getMulCount();
+        direct.setText(direct.getText()+countOperation);
     }
 
     public void changeScene(ActionEvent event)throws IOException {

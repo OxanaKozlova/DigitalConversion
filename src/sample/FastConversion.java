@@ -11,6 +11,9 @@ import java.util.HashMap;
  * Created by Oxana on 22.02.2016.
  */
 public class FastConversion {
+
+    int sumCount = 0;
+    int mulCount = 0;
     public ArrayList<Complex> getFunction(){
         ArrayList<Complex> array = new ArrayList<>();
         for(int i = 0; i<16; i++){
@@ -69,6 +72,9 @@ public class FastConversion {
             result.set((i+n/2), beven.get(i).minus(tempValue));
 
             w = w.times(wn);
+
+            sumCount ++;
+            mulCount++;
         }
         return result;
     }
@@ -79,5 +85,13 @@ public class FastConversion {
             absolute.add(fftResult.get(i).abs());
         }
         return absolute;
+    }
+
+    int getSumCount(){
+        return sumCount;
+    }
+
+    int getMulCount(){
+        return  mulCount;
     }
 }
