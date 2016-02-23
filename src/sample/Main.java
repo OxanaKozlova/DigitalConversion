@@ -18,7 +18,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("digitalConversion.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Digital Conversion");
-
+        FastConversion functionPhase = new FastConversion();
 
         primaryStage.show();
 

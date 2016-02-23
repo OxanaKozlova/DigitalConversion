@@ -72,6 +72,25 @@ public class FastController {
         }
         reverse.getData().add(seriesReverse);
 
+        phase.getXAxis().setAutoRanging(true);
+        phase.getYAxis().setAutoRanging(true);
+
+        XYChart.Series seriesPhase = new XYChart.Series<>();
+        seriesPhase.setName("Phase Function");
+        //DigitalConversion functionPhase1 = new DigitalConversion();
+        //ArrayList<Complex> phaseValue1 = functionPhase1.directConversion();
+        FastConversion functionPhase = new FastConversion();
+        ArrayList<Complex> phaseValue = functionPhase.fft(functionPhase.getFunction(), 1);
+        for(int i = 0; i<phaseValue.size(); i++){
+            phaseValue.set(i,  phaseValue.get(i).divides(new Complex(16,0)));
+        }
+        for(Integer i=0; i<16; i++){
+            Double temp = 2*Math.PI/(16)*i;
+            temp = new BigDecimal(temp).setScale(2, RoundingMode.UP).doubleValue();
+            seriesPhase.getData().add(new XYChart.Data<>(temp.toString(), phaseValue.get(i).phase()));
+        }
+        phase.getData().add(seriesPhase);
+
 
 
     }
