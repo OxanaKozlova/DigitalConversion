@@ -22,27 +22,7 @@ public class FastConversion {
         return array ;
     }
 
-//    public ArrayList<Complex> reverse(ArrayList<Complex> function){
-//        ArrayList<Integer> indexArray = new ArrayList<>();
-//        ArrayList<Complex> newFunctionIndex = new ArrayList<>();
-//        for(int i = 0; i<16; i++){
-//            newFunctionIndex.add(new Complex(0,0));
-//        }
-//        for(int i = 0; i<16; i++){
-//            String bin_str = Integer.toBinaryString(i);
-//            if (bin_str.length() < 4) {
-//                char[] chars = new char[4 - bin_str.length()];
-//                Arrays.fill(chars, '0');
-//                bin_str = new String(chars) + bin_str;
-//            }
-//            StringBuffer str = new StringBuffer(bin_str).reverse();
-//            indexArray.add(Integer.parseInt(str.toString(), 2));
-//        }
-//        for(int i = 0; i<16; i++){
-//            newFunctionIndex.add(function.get(indexArray.get(i)));
-//        }
-//        return  newFunctionIndex;
-//    }
+
 
     public ArrayList<Complex> fft(ArrayList<Complex> variables, int dir ) {
         if (variables.size() == 1) {
@@ -82,7 +62,7 @@ public class FastConversion {
     public ArrayList<Double> getAbsolute(ArrayList<Complex> fftResult){
         ArrayList<Double> absolute = new ArrayList<>();
         for(int i = 0; i<fftResult.size(); i++){
-            absolute.add(fftResult.get(i).abs());
+            absolute.add(fftResult.get(i).abs()/16);
         }
         return absolute;
     }
